@@ -16,6 +16,10 @@
     <properties>
         <java.version>17</java.version>
         <swagger.version>3.0.0</swagger.version>
+        <ecs-logging-java.version>1.4.0</ecs-logging-java.version>
+        <jib.container.labels>
+            co.elastic.logs/json.keys_under_root=true,co.elastic.logs/json.overwrite_keys=true,co.elastic.logs/json.add_error_key=true,co.elastic.logs/json.expand_keys=true
+        </jib.container.labels>
     </properties>
     <dependencies>
         <dependency>
@@ -34,6 +38,12 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-boot-starter</artifactId>
             <version>${swagger.version}</version>
+        </dependency>
+        <!-- Logging-->
+        <dependency>
+            <groupId>co.elastic.logging</groupId>
+            <artifactId>logback-ecs-encoder</artifactId>
+            <version>${ecs-logging-java.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -77,6 +87,14 @@
                             <port>8080</port>
                         </ports>
                     </container>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
                 </configuration>
             </plugin>
         </plugins>

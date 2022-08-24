@@ -16,6 +16,9 @@ public class BookController {
 
     @GetMapping
     public List<BookDto> getBooks() {
-        return Arrays.asList(new BookDto("isbn1", "Book1"), new BookDto("isbn2", "Book2"));
+        log.info("I am in");
+        List<BookDto> books = Arrays.asList(new BookDto("isbn1", "Book1"), new BookDto("isbn2", "Book2"));
+        log.info("I am about to leave with {}", books);
+        return books;
     }
 }
